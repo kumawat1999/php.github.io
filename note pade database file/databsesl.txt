@@ -1,0 +1,1501 @@
+Microsoft Windows [Version 10.0.19045.2486]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\dell>cd..
+
+C:\Users>cd..
+
+C:\>d:
+
+D:\>xamppp\mysql\bin
+'xamppp\mysql\bin' is not recognized as an internal or external command,
+operable program or batch file.
+
+D:\>xamppp\mysql\bin
+'xamppp\mysql\bin' is not recognized as an internal or external command,
+operable program or batch file.
+
+D:\>xamppp\mysql\bin
+'xamppp\mysql\bin' is not recognized as an internal or external command,
+operable program or batch file.
+
+D:\>cd xamppp\mysql\bin
+
+D:\xamppp\mysql\bin>show databases;
+'show' is not recognized as an internal or external command,
+operable program or batch file.
+
+D:\xamppp\mysql\bin>mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 278
+Server version: 10.4.14-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| database1          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [(none)]> use database1;
+Database changed
+MariaDB [database1]> show tables;
++---------------------+
+| Tables_in_database1 |
++---------------------+
+| costumer            |
+| items_id            |
+| table1              |
++---------------------+
+3 rows in set (0.000 sec)
+
+MariaDB [database1]> desc costumer;
++----------+--------------+------+-----+---------+----------------+
+| Field    | Type         | Null | Key | Default | Extra          |
++----------+--------------+------+-----+---------+----------------+
+| id       | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(100) | YES  |     | NULL    |                |
+| lname    | varchar(100) | YES  |     | NULL    |                |
+| email    | varchar(100) | YES  |     | NULL    |                |
+| gender   | varchar(100) | YES  |     | NULL    |                |
+| city     | varchar(100) | YES  |     | NULL    |                |
+| pic code | int(6)       | NO   |     | NULL    |                |
++----------+--------------+------+-----+---------+----------------+
+7 rows in set (0.275 sec)
+
+MariaDB [database1]> desc items_id;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| items_name | varchar(100) | YES  |     | NULL    |                |
+| amount     | int(11)      | NO   |     | NULL    |                |
+| date       | date         | YES  |     | NULL    |                |
+| other      | varchar(100) | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.008 sec)
+
+MariaDB [database1]> create table wender(id int not null auto_increment,
+    -> name varchar(100),
+    -> lname varchar(100),
+    -> email varchar(100),
+    -> password varchar(100),
+    -> city varchar(100),
+    -> primary key(id)
+    -> );
+Query OK, 0 rows affected (0.655 sec)
+
+MariaDB [database1]> select * from wender;
+Empty set (0.002 sec)
+
+MariaDB [database1]> insert into wender;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [database1]> select * from wender;
+Empty set (0.000 sec)
+
+MariaDB [database1]> insert into wender(id,name,lname,email,password,city)
+    -> values (id,
+    -> 'amit kumawat',
+    -> 'kumawat',
+    -> 'amit@gmail.com',
+    -> '969696',
+    -> 'jaipur');
+Query OK, 1 row affected (0.409 sec)
+
+MariaDB [database1]> select * from wender;
++----+--------------+---------+----------------+----------+--------+
+| id | name         | lname   | email          | password | city   |
++----+--------------+---------+----------------+----------+--------+
+|  1 | amit kumawat | kumawat | amit@gmail.com | 969696   | jaipur |
++----+--------------+---------+----------------+----------+--------+
+1 row in set (0.000 sec)
+
+MariaDB [database1]> alter table wender add class varchar(100);
+Query OK, 0 rows affected (0.545 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [database1]> select * from wender;
++----+--------------+---------+----------------+----------+--------+-------+
+| id | name         | lname   | email          | password | city   | class |
++----+--------------+---------+----------------+----------+--------+-------+
+|  1 | amit kumawat | kumawat | amit@gmail.com | 969696   | jaipur | NULL  |
++----+--------------+---------+----------------+----------+--------+-------+
+1 row in set (0.000 sec)
+
+MariaDB [database1]> alter table wender drop class;
+Query OK, 0 rows affected (0.453 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+MariaDB [database1]> select * from wender;
++----+--------------+---------+----------------+----------+--------+
+| id | name         | lname   | email          | password | city   |
++----+--------------+---------+----------------+----------+--------+
+|  1 | amit kumawat | kumawat | amit@gmail.com | 969696   | jaipur |
++----+--------------+---------+----------------+----------+--------+
+1 row in set (0.001 sec)
+
+MariaDB [database1]> delete from table wender drop column city;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table wender drop column city' at line 1
+MariaDB [database1]>
+MariaDB [database1]>
+MariaDB [database1]> alter table wender drop primary key;
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+MariaDB [database1]> alter table wender change name ='names' varchar(100);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '='names' varchar(100)' at line 1
+MariaDB [database1]> alter wender change name='names' varchar (100)r;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'wender change name='names' varchar (100)r' at line 1
+MariaDB [database1]> alter wender change name='names' varchar (100);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'wender change name='names' varchar (100)' at line 1
+MariaDB [database1]> alter table wender modify column name names;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [database1]> select * from wender;
++----+--------------+---------+----------------+----------+--------+
+| id | name         | lname   | email          | password | city   |
++----+--------------+---------+----------------+----------+--------+
+|  1 | amit kumawat | kumawat | amit@gmail.com | 969696   | jaipur |
++----+--------------+---------+----------------+----------+--------+
+1 row in set (0.000 sec)
+
+MariaDB [database1]> change wender name='names' varchar (100);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'wender name='names' varchar (100)' at line 1
+MariaDB [database1]> alter table wender change name='names' varchar(100);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '='names' varchar(100)' at line 1
+MariaDB [database1]> alter table wender change name names varchar(100);)
+Query OK, 0 rows affected (0.547 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ')' at line 1
+MariaDB [database1]> select * from wender;
++----+--------------+---------+----------------+----------+--------+
+| id | names        | lname   | email          | password | city   |
++----+--------------+---------+----------------+----------+--------+
+|  1 | amit kumawat | kumawat | amit@gmail.com | 969696   | jaipur |
++----+--------------+---------+----------------+----------+--------+
+1 row in set (0.000 sec)
+
+MariaDB [database1]> alter table wender drop int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'int' at line 1
+MariaDB [database1]> alter table wender modify password int primary key;
+ERROR 1068 (42000): Multiple primary key defined
+MariaDB [database1]> select id as ids from wender;
++-----+
+| ids |
++-----+
+|   1 |
++-----+
+1 row in set (0.000 sec)
+
+MariaDB [database1]> select * from wender;
++----+--------------+---------+----------------+----------+--------+
+| id | names        | lname   | email          | password | city   |
++----+--------------+---------+----------------+----------+--------+
+|  1 | amit kumawat | kumawat | amit@gmail.com | 969696   | jaipur |
++----+--------------+---------+----------------+----------+--------+
+1 row in set (0.000 sec)
+
+MariaDB [database1]> update wender set names='rakesh kumawat', email='rakesh@gmail.com' ;
+Query OK, 1 row affected (0.413 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [database1]> select * from wender;
++----+----------------+---------+------------------+----------+--------+
+| id | names          | lname   | email            | password | city   |
++----+----------------+---------+------------------+----------+--------+
+|  1 | rakesh kumawat | kumawat | rakesh@gmail.com | 969696   | jaipur |
++----+----------------+---------+------------------+----------+--------+
+1 row in set (0.000 sec)
+
+MariaDB [database1]> show tables;
++---------------------+
+| Tables_in_database1 |
++---------------------+
+| costumer            |
+| items_id            |
+| table1              |
+| wender              |
++---------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [database1]> select * from costumet;
+ERROR 1146 (42S02): Table 'database1.costumet' doesn't exist
+MariaDB [database1]> select * from table1;
++----+--------------+---------+----------------+----------+------------+-------+
+| id | name         | lname   | email          | password | address    | class |
++----+--------------+---------+----------------+----------+------------+-------+
+|  1 | amit kumawat | kumawat | amit@gmail.com | 88888    | lunwa nawa | 12th  |
++----+--------------+---------+----------------+----------+------------+-------+
+1 row in set (0.000 sec)
+
+MariaDB [database1]> select * from items_id;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 10 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |     50 | 2023-02-17 | good           |
+| 22 | pan                    |     50 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+25 rows in set (0.000 sec)
+
+MariaDB [database1]> select * from table1 order by name desc;
++----+--------------+---------+----------------+----------+------------+-------+
+| id | name         | lname   | email          | password | address    | class |
++----+--------------+---------+----------------+----------+------------+-------+
+|  1 | amit kumawat | kumawat | amit@gmail.com | 88888    | lunwa nawa | 12th  |
++----+--------------+---------+----------------+----------+------------+-------+
+1 row in set (0.000 sec)
+
+MariaDB [database1]> select * from items_id order by name desc;
+ERROR 1054 (42S22): Unknown column 'name' in 'order clause'
+MariaDB [database1]> select * from items_id order by items_name desc;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  6 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 21 | pan                    |     50 | 2023-02-17 | good           |
+| 22 | pan                    |     50 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 10 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
++----+------------------------+--------+------------+----------------+
+25 rows in set (0.000 sec)
+
+MariaDB [database1]> select * from items_id where like 'a%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'like 'a%'' at line 1
+MariaDB [database1]> select * from items_id where like 'B%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'like 'B%'' at line 1
+MariaDB [database1]> select * from items_id where like 'h%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'like 'h%'' at line 1
+MariaDB [database1]> select * from items_id where like '%h';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'like '%h'' at line 1
+MariaDB [database1]> select * from items_name where like 'B%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'like 'B%'' at line 1
+MariaDB [database1]> select * form items_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'form items_id' at line 1
+MariaDB [database1]> select * from items_id;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 10 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |     50 | 2023-02-17 | good           |
+| 22 | pan                    |     50 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+25 rows in set (0.000 sec)
+
+MariaDB [database1]> select * from items_id where id in (1,10,7,3);
++----+-----------------+--------+------------+----------------+
+| id | items_name      | amount | date       | other          |
++----+-----------------+--------+------------+----------------+
+|  1 | Jewellery       |  50000 | 2023-02-01 | good item      |
+|  3 | Makeup material |   4500 | 2023-02-16 | vary nice itme |
+|  7 | Novelty         |  45000 | 2023-02-15 | vary nice      |
+| 10 | Handbags        |   5000 | 2023-02-03 | good item      |
++----+-----------------+--------+------------+----------------+
+4 rows in set (0.000 sec)
+
+MariaDB [database1]> select * from items_id where items_name not in (novelty,pan);
+ERROR 1054 (42S22): Unknown column 'novelty' in 'where clause'
+MariaDB [database1]> select * from items_id where amount in (4500);
++----+-----------------+--------+------------+----------------+
+| id | items_name      | amount | date       | other          |
++----+-----------------+--------+------------+----------------+
+|  3 | Makeup material |   4500 | 2023-02-16 | vary nice itme |
+| 13 | Makeup material |   4500 | 2023-02-16 | vary nice itme |
++----+-----------------+--------+------------+----------------+
+2 rows in set (0.000 sec)
+
+MariaDB [database1]> select * from items_id where id between 5 and 12;
++----+------------------------+--------+------------+------------+
+| id | items_name             | amount | date       | other      |
++----+------------------------+--------+------------+------------+
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice  |
+|  6 | Perfumes               |   9666 | 2023-02-16 | vary nice  |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice  |
+|  8 | wolet                  |    500 | 2022-12-01 | nice       |
+|  9 | pan                    |     50 | 2023-02-17 | good       |
+| 10 | Handbags               |   5000 | 2023-02-03 | good item  |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice  |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item  |
++----+------------------------+--------+------------+------------+
+8 rows in set (0.000 sec)
+
+MariaDB [database1]> select * from items_id;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 10 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |     50 | 2023-02-17 | good           |
+| 22 | pan                    |     50 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+25 rows in set (0.001 sec)
+
+MariaDB [database1]> select * from items_id where items_name between jewellery and handbags;
+ERROR 1054 (42S22): Unknown column 'jewellery' in 'where clause'
+MariaDB [database1]> select * from items_id where amount between 50 and 12000;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 10 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |     50 | 2023-02-17 | good           |
+| 22 | pan                    |     50 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+23 rows in set (0.001 sec)
+
+MariaDB [database1]> select * from items_id where amount between 5000 and 12000;
++----+--------------+--------+------------+----------------+
+| id | items_name   | amount | date       | other          |
++----+--------------+--------+------------+----------------+
+|  2 | Handbags     |   5000 | 2023-02-03 | good item      |
+|  4 | Small decors |  12000 | 2023-02-15 | vary nice itme |
+|  6 | Perfumes     |   9666 | 2023-02-16 | vary nice      |
+| 10 | Handbags     |   5000 | 2023-02-03 | good item      |
+| 12 | Handbags     |   5000 | 2023-02-03 | good item      |
+| 14 | Handbags     |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags     |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags     |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors |  12000 | 2023-02-15 | vary nice itme |
+| 19 | Perfumes     |   9666 | 2023-02-16 | vary nice      |
+| 24 | Handbags     |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors |  12000 | 2023-02-15 | vary nice itme |
++----+--------------+--------+------------+----------------+
+12 rows in set (0.000 sec)
+
+MariaDB [database1]> delete from items_id where id=10;
+Query OK, 1 row affected (0.426 sec)
+
+MariaDB [database1]> select * from items_id;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |     50 | 2023-02-17 | good           |
+| 22 | pan                    |     50 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+24 rows in set (0.001 sec)
+
+MariaDB [database1]> update items_id set amount='20000' varchar(100) where id='10';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'varchar(100) where id='10'' at line 1
+MariaDB [database1]> update items_id set amount='20000' varchar(100);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'varchar(100)' at line 1
+MariaDB [database1]> rename items_id to items;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'items_id to items' at line 1
+MariaDB [database1]> alter table items_id rename items;
+Query OK, 0 rows affected (0.795 sec)
+
+MariaDB [database1]> select * from items;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |     50 | 2023-02-17 | good           |
+| 22 | pan                    |     50 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+24 rows in set (0.002 sec)
+
+MariaDB [database1]> alter databases rename data1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'databases rename data1' at line 1
+MariaDB [database1]> alter database databases rename data1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'databases rename data1' at line 1
+MariaDB [database1]> commit;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [database1]> select * from data1;
+ERROR 1146 (42S02): Table 'database1.data1' doesn't exist
+MariaDB [database1]> show tables;
++---------------------+
+| Tables_in_database1 |
++---------------------+
+| costumer            |
+| items               |
+| table1              |
+| wender              |
++---------------------+
+4 rows in set (0.000 sec)
+
+MariaDB [database1]> desc items;;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
+| items_name | varchar(100) | YES  |     | NULL    |                |
+| amount     | int(11)      | NO   |     | NULL    |                |
+| date       | date         | YES  |     | NULL    |                |
+| other      | varchar(100) | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.346 sec)
+
+ERROR: No query specified
+
+MariaDB [database1]> select * from items;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |     50 | 2023-02-17 | good           |
+| 22 | pan                    |     50 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+24 rows in set (0.000 sec)
+
+MariaDB [database1]> update items set amount='500000' where id='6';
+Query OK, 1 row affected (0.302 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [database1]> select * from items;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |     50 | 2023-02-17 | good           |
+| 22 | pan                    |     50 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+24 rows in set (0.000 sec)
+
+MariaDB [database1]> rollback;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [database1]> select 8 from items;
++---+
+| 8 |
++---+
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
++---+
+24 rows in set (0.000 sec)
+
+MariaDB [database1]> select * from items;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |     50 | 2023-02-17 | good           |
+| 22 | pan                    |     50 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+24 rows in set (0.000 sec)
+
+MariaDB [database1]> rollback;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [database1]> select * from items;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |     50 | 2023-02-17 | good           |
+| 22 | pan                    |     50 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+24 rows in set (0.000 sec)
+
+MariaDB [database1]> savepoint a;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [database1]> select * from items;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |     50 | 2023-02-17 | good           |
+| 22 | pan                    |     50 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+24 rows in set (0.000 sec)
+
+MariaDB [database1]> update items set amount='30333' where id='22';
+Query OK, 1 row affected (0.426 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [database1]> select * from items;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |     50 | 2023-02-17 | good           |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+24 rows in set (0.001 sec)
+
+MariaDB [database1]> rollback a;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'a' at line 1
+MariaDB [database1]> rollback to a;
+ERROR 1305 (42000): SAVEPOINT a does not exist
+MariaDB [database1]> update items set amount=amount +100 where id='21';
+Query OK, 1 row affected (0.494 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [database1]> select * from items;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |    150 | 2023-02-17 | good           |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+24 rows in set (0.001 sec)
+
+MariaDB [database1]> update items set amount=amount +100 where id=(11,14,10);
+ERROR 4078 (HY000): Illegal parameter data types int and row for operation '='
+MariaDB [database1]> select * from items where amount >50;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 21 | pan                    |    150 | 2023-02-17 | good           |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+21 rows in set (0.000 sec)
+
+MariaDB [database1]> select * from items where amount >500;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+19 rows in set (0.001 sec)
+
+MariaDB [database1]> select * from items where amount >1000;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+19 rows in set (0.001 sec)
+
+MariaDB [database1]> select * from items where amount >1500;
++----+-----------------+--------+------------+----------------+
+| id | items_name      | amount | date       | other          |
++----+-----------------+--------+------------+----------------+
+|  1 | Jewellery       |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags        |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors    |  12000 | 2023-02-15 | vary nice itme |
+|  6 | Perfumes        | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty         |  45000 | 2023-02-15 | vary nice      |
+| 12 | Handbags        |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags        |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags        |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags        |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors    |  12000 | 2023-02-15 | vary nice itme |
+| 19 | Perfumes        |   9666 | 2023-02-16 | vary nice      |
+| 22 | pan             |  30333 | 2023-02-17 | good           |
+| 24 | Handbags        |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors    |  12000 | 2023-02-15 | vary nice itme |
++----+-----------------+--------+------------+----------------+
+16 rows in set (0.001 sec)
+
+MariaDB [database1]> select * from items where amount >3000;
++----+-----------------+--------+------------+----------------+
+| id | items_name      | amount | date       | other          |
++----+-----------------+--------+------------+----------------+
+|  1 | Jewellery       |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags        |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors    |  12000 | 2023-02-15 | vary nice itme |
+|  6 | Perfumes        | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty         |  45000 | 2023-02-15 | vary nice      |
+| 12 | Handbags        |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags        |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags        |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags        |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors    |  12000 | 2023-02-15 | vary nice itme |
+| 19 | Perfumes        |   9666 | 2023-02-16 | vary nice      |
+| 22 | pan             |  30333 | 2023-02-17 | good           |
+| 24 | Handbags        |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors    |  12000 | 2023-02-15 | vary nice itme |
++----+-----------------+--------+------------+----------------+
+16 rows in set (0.001 sec)
+
+MariaDB [database1]> select * from items where amount >500000;
+Empty set (0.001 sec)
+
+MariaDB [database1]> select * from items where amount >5000;
++----+--------------+--------+------------+----------------+
+| id | items_name   | amount | date       | other          |
++----+--------------+--------+------------+----------------+
+|  1 | Jewellery    |  50000 | 2023-02-01 | good item      |
+|  4 | Small decors |  12000 | 2023-02-15 | vary nice itme |
+|  6 | Perfumes     | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty      |  45000 | 2023-02-15 | vary nice      |
+| 17 | Small decors |  12000 | 2023-02-15 | vary nice itme |
+| 19 | Perfumes     |   9666 | 2023-02-16 | vary nice      |
+| 22 | pan          |  30333 | 2023-02-17 | good           |
+| 25 | Small decors |  12000 | 2023-02-15 | vary nice itme |
++----+--------------+--------+------------+----------------+
+8 rows in set (0.001 sec)
+
+MariaDB [database1]> update items set amount=amount || 'amit' where id='4';
+Query OK, 1 row affected, 1 warning (0.441 sec)
+Rows matched: 1  Changed: 1  Warnings: 1
+
+MariaDB [database1]> select * from items;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |      1 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |    150 | 2023-02-17 | good           |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+24 rows in set (0.001 sec)
+
+MariaDB [database1]> update items set amount=amount || '5555' where id='4';
+Query OK, 0 rows affected (0.000 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+MariaDB [database1]> select * from items;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |      1 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |    150 | 2023-02-17 | good           |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+24 rows in set (0.000 sec)
+
+MariaDB [database1]> update items set amount=amount || 'date' where id='4';
+Query OK, 0 rows affected, 1 warning (0.000 sec)
+Rows matched: 1  Changed: 0  Warnings: 1
+
+MariaDB [database1]> select 8 from items;
++---+
+| 8 |
++---+
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
++---+
+24 rows in set (0.000 sec)
+
+MariaDB [database1]> select * from items;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |      1 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |    150 | 2023-02-17 | good           |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+24 rows in set (0.000 sec)
+
+MariaDB [database1]> update items set amount=amount || 'roy' where id='4';
+Query OK, 0 rows affected, 1 warning (0.000 sec)
+Rows matched: 1  Changed: 0  Warnings: 1
+
+MariaDB [database1]> select * from items;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |      1 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |    150 | 2023-02-17 | good           |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+24 rows in set (0.000 sec)
+
+MariaDB [database1]> select * from items where amount=1000 and date = '2023-02-17';
+Empty set (0.001 sec)
+
+MariaDB [database1]> select * from items where amount=1000 and date=2023-02-17;
+Empty set (0.357 sec)
+
+MariaDB [database1]> select * from items where id='5' and amount='1244';
++----+------------------------+--------+------------+------------+
+| id | items_name             | amount | date       | other      |
++----+------------------------+--------+------------+------------+
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice  |
++----+------------------------+--------+------------+------------+
+1 row in set (0.000 sec)
+
+MariaDB [database1]> select * from items where id='5' not amount='1244';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'amount='1244'' at line 1
+MariaDB [database1]> select * from items where not amount='1000';
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |      1 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |    150 | 2023-02-17 | good           |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+24 rows in set (0.001 sec)
+
+MariaDB [database1]> select * from items where not amount='50';
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |      1 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 21 | pan                    |    150 | 2023-02-17 | good           |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+21 rows in set (0.001 sec)
+
+MariaDB [database1]> select * from items where not amount='12000';
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |      1 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |    150 | 2023-02-17 | good           |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
++----+------------------------+--------+------------+----------------+
+22 rows in set (0.000 sec)
+
+MariaDB [database1]> select * from items where not amount='5000';
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |      1 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |    150 | 2023-02-17 | good           |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+18 rows in set (0.001 sec)
+
+MariaDB [database1]> select distinct * from items;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |      1 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |    150 | 2023-02-17 | good           |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+24 rows in set (0.000 sec)
+
+MariaDB [database1]> select * from items order by amount desc;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+| 21 | pan                    |    150 | 2023-02-17 | good           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+|  4 | Small decors           |      1 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+24 rows in set (0.000 sec)
+
+MariaDB [database1]> select distinct  amount from items order by desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'desc' at line 1
+MariaDB [database1]> select distinct items_name  from items order by desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'desc' at line 1
+MariaDB [database1]> select distinct items_name  from items order by items_name desc;
++------------------------+
+| items_name             |
++------------------------+
+| wolet                  |
+| Small decors           |
+| Perfumes               |
+| pan                    |
+| Novelty                |
+| Makeup material        |
+| Jewellery              |
+| Handbags               |
+| Bangles, earrings, etc |
++------------------------+
+9 rows in set (0.000 sec)
+
+MariaDB [database1]> select * from items distinct order by items_name asc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'distinct order by items_name asc' at line 1
+MariaDB [database1]> select * from items distinct;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'distinct' at line 1
+MariaDB [database1]> select * from items;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |      1 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |    150 | 2023-02-17 | good           |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 26 | Jewellery              |  50000 | 2023-02-01 |                |
+| 27 |                        |      1 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+26 rows in set (0.000 sec)
+
+MariaDB [database1]> select * from items is null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'is null' at line 1
+MariaDB [database1]> select * from items where items_name is null;
+Empty set (0.339 sec)
+
+MariaDB [database1]> select * from items where items_name is not null;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |      1 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |    150 | 2023-02-17 | good           |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 26 | Jewellery              |  50000 | 2023-02-01 |                |
+| 27 |                        |      1 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+26 rows in set (0.000 sec)
+
+MariaDB [database1]> select * from items where id is null;
+Empty set (0.000 sec)
+
+MariaDB [database1]> select * from items where id is not null;
++----+------------------------+--------+------------+----------------+
+| id | items_name             | amount | date       | other          |
++----+------------------------+--------+------------+----------------+
+|  1 | Jewellery              |  50000 | 2023-02-01 | good item      |
+|  2 | Handbags               |   5000 | 2023-02-03 | good item      |
+|  3 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+|  4 | Small decors           |      1 | 2023-02-15 | vary nice itme |
+|  5 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+|  6 | Perfumes               | 500000 | 2023-02-16 | vary nice      |
+|  7 | Novelty                |  45000 | 2023-02-15 | vary nice      |
+|  8 | wolet                  |    500 | 2022-12-01 | nice           |
+|  9 | pan                    |     50 | 2023-02-17 | good           |
+| 11 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 12 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 13 | Makeup material        |   4500 | 2023-02-16 | vary nice itme |
+| 14 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 15 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 16 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 17 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 18 | Bangles, earrings, etc |   1244 | 2023-02-17 | vary nice      |
+| 19 | Perfumes               |   9666 | 2023-02-16 | vary nice      |
+| 20 | pan                    |     50 | 2023-02-17 | good           |
+| 21 | pan                    |    150 | 2023-02-17 | good           |
+| 22 | pan                    |  30333 | 2023-02-17 | good           |
+| 23 | pan                    |     50 | 2023-02-17 | good           |
+| 24 | Handbags               |   5000 | 2023-02-03 | good item      |
+| 25 | Small decors           |  12000 | 2023-02-15 | vary nice itme |
+| 26 | Jewellery              |  50000 | 2023-02-01 |                |
+| 27 |                        |      1 | 2023-02-15 | vary nice itme |
++----+------------------------+--------+------------+----------------+
+26 rows in set (0.000 sec)
+
+MariaDB [database1]>
+ALTER TABLE table_name
+MODIFY COLUMN column_name column_definition;

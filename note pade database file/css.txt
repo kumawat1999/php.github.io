@@ -1,0 +1,28 @@
+margin pading pail hone ke bad >
+ 
+position tin prkar ki hoti hai >
+1. absolute 
+2. reletiv 
+3. fixed
+
+1. absolute position hamesa top se chalu hoga or iske sath hi do propti sath chalti hai 
+sono % or px me decler kar sakte hai or + - mei bhi
+
+2. reletiv kontet ko left or top se positon dete hai 
+
+3. fixed eliment fixed ho jata hai only piche ke move ho sakte hai fixed div 
+vhi rhega 
+
+4. opacity>
+ 0.4;
+vigiblity ko mantain karta hai text ko light or dark karne ke kam aata hai 
+
+5. Z-index jis bhi html elimant ka z alimant jyada hoga wo pahle vigibal hoga 
+
+6.   agar dispaly none kiya to uski jagh adar alimant arjest ho jate ahijabki vigiblity hidan me space regarw hota hai 
+
+
+
+ 
+
+ 

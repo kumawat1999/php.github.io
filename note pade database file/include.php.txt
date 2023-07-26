@@ -1,0 +1,23 @@
+php me ak file se dusri file ko call krane ke liy inculued and requrid 
+
+frist file me hi inculud se call kreate hai 
+
+frist file me>
+
+<form> input
+input name
+
+
+<?php
+include " form2.php";
+?>
+
+
+
+
+secound file me 
+input l name
+email input
+input submit button
+
+</form>
